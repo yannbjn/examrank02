@@ -6,7 +6,7 @@
 /*   By: yabejani <yabejani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 14:40:26 by yabejani          #+#    #+#             */
-/*   Updated: 2024/02/15 14:44:49 by yabejani         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:57:34 by yabejani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_ulstr(char *str)
 		i++;
 	}
 }
-rm a.out
+
 int	main(int argc, char **argv)
 {
 	if (argc == 2)
