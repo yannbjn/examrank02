@@ -1,46 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   repeat_alpha.c                                     :+:      :+:    :+:   */
+/*   rev_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabejani <yabejani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 16:01:52 by yabejani          #+#    #+#             */
-/*   Updated: 2024/02/15 13:08:02 by yabejani         ###   ########.fr       */
+/*   Created: 2024/02/15 13:24:44 by yabejani          #+#    #+#             */
+/*   Updated: 2024/02/15 13:28:19 by yabejani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_repeat_alpha(char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
-	int j;
+	
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 
-	i = -1;
-	while (str[++i])
+void	ft_rev_print(char *str)
+{
+	int	i;
+
+	i = ft_strlen(str) - 1;
+	while (i >= 0)
 	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-		{
-			j = -1;
-			while (++j < str[i] +1 - 'a')
-				write(1, &str[i], 1);
-		}
-		else if (str[i] >= 'A' && str[i] <= 'Z')
-		{
-			j = -1;
-			while(++j < str[i] + 1 - 'A')
-				write(1, &str[i], 1);
-		}
-		else
-			write(1, &str[i], 1);
+		write(1, &str[i], 1);
+		i--;
 	}
 }
 
 int	main(int argc, char **argv)
 {
 	if (argc == 2)
-		ft_repeat_alpha(argv[1]);
-	write (1, "\n", 1);
+		ft_rev_print(argv[1]);
+	write(1, "\n", 1);
 	return (0);
 }
