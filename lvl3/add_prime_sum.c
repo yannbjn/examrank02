@@ -6,16 +6,11 @@
 /*   By: yabejani <yabejani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 12:57:35 by yabejani          #+#    #+#             */
-/*   Updated: 2024/02/23 13:50:29 by yabejani         ###   ########.fr       */
+/*   Updated: 2024/02/27 20:42:02 by yabejani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
 
 int	ft_atoi(char *str)
 {
@@ -27,48 +22,46 @@ int	ft_atoi(char *str)
 	return (res);
 }
 
-void	ft_putnbr(int nb)
+void	ft_putnbr(int nbr)
 {
-	if (nb > 9)
-		ft_putnbr(nb / 10);
-	ft_putchar((nb % 10) + 48);
+	if (nbr > 9)
+		ft_putnbr(nbr / 10);
+	char c = (nbr % 10) + 48;
+	write(1, &c, 1);
 }
 
-int	ft_is_prime(int	nb)
+int	ft_is_prime(int nbr)
 {
-	int	n = 2;
+	int	i = 2;
 	
-	if (nb <= 1)
+	if (nbr == 1)
 		return (0);
-	while (n <= (nb / 2))
+	while (i <= (nbr / 2))
 	{
-		if ((nb % n) == 0)
+		if (nbr % i == 0)
 			return (0);
-		n++;
+		i++;
 	}
 	return (1);
 }
 
-void	ft_prime_sum(char *str)
-{
-	int	nbr = 0;
-	int	sum = 0;
-	int	prim = 1;
-
-	nbr = ft_atoi(str);
-	while (prim <= nbr && prim <= 46342)
-	{
-		if (ft_is_prime(prim))
-			sum += prim;
-		prim++;
-	}
-	ft_putnbr(sum);
-}
-
 int	main(int argc, char **argv)
 {
+	int sum = 0;
+	int	i = 0;
+
 	if (argc == 2)
-		ft_prime_sum(argv[1]);
-	write(1, "\n", 1);
-	return (0);
+	{
+		int	nbr = ft_atoi(argv[1]);
+		while (i <= nbr && i <= 46341)
+		{
+			if (ft_is_prime(i))
+				sum += i;
+			i++;
+		}
+		ft_putnbr(sum);
+		write(1, "\n", 1);
+	}
+	else
+		write(1, "0\n", 2);
 }
