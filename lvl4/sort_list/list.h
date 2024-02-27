@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_remove_if.c                                :+:      :+:    :+:   */
+/*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yabejani <yabejani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 15:29:04 by yabejani          #+#    #+#             */
-/*   Updated: 2024/02/27 12:58:05 by yabejani         ###   ########.fr       */
+/*   Created: 2024/02/27 19:44:27 by yabejani          #+#    #+#             */
+/*   Updated: 2024/02/27 19:45:12 by yabejani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#ifndef LIST_H
+# define LIST_H
 
-void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp()))
+typedef struct s_list	t_list;
+
+struct					s_list
 {
-	if (!*begin_list || !begin_list)
-		return ;
+	int					data;
+	t_list				*next;
+};
 
-	t_list *cur = *begin_list;
-
-	if ((*cmp)(cur->data, data_ref) == 0)
-	{
-		*begin_list = cur->next;
-		free(cur);
-		ft_list_remove_if(begin_list, data_ref, cmp);
-	}
-	else
-	{
-		cur = *begin_list;
-		ft_list_remove(&cur->next, data_ref, cmp);
-	}
-}
+#endif
