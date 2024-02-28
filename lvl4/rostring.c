@@ -6,46 +6,49 @@
 /*   By: yabejani <yabejani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:36:39 by yabejani          #+#    #+#             */
-/*   Updated: 2024/02/26 18:43:43 by yabejani         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:53:29 by yabejani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_rostring(char *str)
+int		ft_isblank(char c)
 {
-	int	i = 0;
-	int start;
-	int	end;
-	int flag = 0;
-
-	while (str[i] == ' ' || str[i] == '\t')
-		i++;
-	start = i;
-	while (str[i] && str[i] != ' ' && str[i] != '\t')
-		i++;
-	end = i;
-	while (str[i] == ' ' || str[i] == '\t')
-		i++;
-	while (str[i])
-	{
-		while ((str[i] == ' ' && str[i + 1] == ' ') || (str[i] == '\t' && str[i + 1] == '\t'))
-			i++;
-		if (str[i] != ' ' && str[i] != '\t')
-			flag = 1;
-		write(1, &str[i], 1);
-		i++;
-	}
-	if (flag)
-		write(1, " ", 1);
-	while (start < end)
-		write(1, &str[start++], 1);
+	return (c == ' ' || c == '\t');
 }
 
-int	main(int argc, char **argv)
+void	rostring(char *s)
 {
-	if (argc > 1)
-		ft_rostring(argv[1]);
+	int		i = 0;
+	int		first_word_length = 0;
+
+	while (s[i])
+	{
+		while (ft_isblank(s[i]))
+			i++;
+		if (s[i] && !ft_isblank(s[i]))
+		{
+			if (first_word_length == 0)
+				while (s[i] && !ft_isblank(s[i++]))
+					first_word_length++;
+			else
+			{
+				while (s[i] && !ft_isblank(s[i]) && write(1, &s[i++], 1));
+				write(1, " ", 1);
+			}
+		}
+	}
+	i = 0;
+	while (ft_isblank(s[i]))
+		i++;
+	while (first_word_length--)
+		write(1, &s[i++], 1);
+}
+
+int		main(int ac, char **av)
+{
+	if (ac > 1 && *av[1])
+		rostring(av[1]);
 	write(1, "\n", 1);
 	return (0);
 }
