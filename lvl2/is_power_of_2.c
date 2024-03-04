@@ -6,7 +6,7 @@
 /*   By: yabejani <yabejani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:47:12 by yabejani          #+#    #+#             */
-/*   Updated: 2024/02/15 18:51:06 by yabejani         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:00:38 by yabejani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ int	is_power_of_2(unsigned int n)
 {
 	if (n == 0)
 		return (0);
-	while (n % 2)
+	while (n % 2 == 0)
 		n /= 2;
 	if (n == 1)
 		return (1);
